@@ -36,13 +36,10 @@ public class Envio {
 
 
 // Constructor vacío (requerido por frameworks y para instanciación flexible).
-
     public Envio() {
     }
 
-
 // Constructor completo: inicializa todos los campos de la clase.
-
     public Envio(Long id, Boolean eliminado, String tracking, Empresa empresa,
                  TipoEnvio tipo, double costo, LocalDate fechaDespacho,
                  LocalDate fechaEstimada, EstadoEnvio estado) {
@@ -59,7 +56,6 @@ public class Envio {
 
 // --- Métodos getters y setters ---
 // Se utilizan para acceder y modificar los valores de los atributos privados.
-
     public Long getId() {
         return id;
     }

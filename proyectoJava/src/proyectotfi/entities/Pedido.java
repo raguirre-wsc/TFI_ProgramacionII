@@ -24,7 +24,6 @@ import java.time.LocalDate;
 public class Pedido {
 
 // Definimos atributos de clase.
-
     private Long id;
     private Boolean eliminado;
     private String numero;
@@ -34,15 +33,11 @@ public class Pedido {
     private EstadoPedido estado;
     private Envio envio;
 
-
 // Constructor vacío (requerido por frameworks y para instanciación flexible).
-
     public Pedido() {
     }
 
-
 //Constructor completo: inicializa todos los campos de la clase.
-
     public Pedido(Long id, Boolean eliminado, String numero, LocalDate fecha,
                   String clienteNombre, double total, EstadoPedido estado, Envio envio) {
         this.id = id;
@@ -57,8 +52,6 @@ public class Pedido {
 
 // --- Métodos getters y setters ---
 // Se utilizan para acceder y modificar los valores de los atributos privados.
-
-
     public Long getId() {
         return id;
     }
