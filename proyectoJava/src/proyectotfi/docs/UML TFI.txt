@@ -1,0 +1,101 @@
+@startuml
+allowmixing
+
+package model {
+
+  class Pedido {
+    - Long id
+    - Boolean eliminado
+    - String numero
+    - java.time.LocalDate fecha
+    - String clienteNombre
+    - double total
+    - EstadoPedido estado
+    - Envio envio
+
+    + Pedido()
+    + Pedido(Long id, Boolean eliminado, String numero, java.time.LocalDate fecha,
+              String clienteNombre, double total, EstadoPedido estado, Envio envio)
+    + getId(): Long
+    + setId(Long): void
+    + isEliminado(): Boolean
+    + setEliminado(Boolean): void
+    + getNumero(): String
+    + setNumero(String): void
+    + getFecha(): java.time.LocalDate
+    + setFecha(java.time.LocalDate): void
+    + getClienteNombre(): String
+    + setClienteNombre(String): void
+    + getTotal(): double
+    + setTotal(double): void
+    + getEstado(): EstadoPedido
+    + setEstado(EstadoPedido): void
+    + getEnvio(): Envio
+    + setEnvio(Envio): void
+    + toString(): String
+  }
+
+  class Envio {
+    - Long id
+    - Boolean eliminado
+    - String tracking
+    - Empresa empresa
+    - TipoEnvio tipo
+    - double costo
+    - java.time.LocalDate fechaDespacho
+    - java.time.LocalDate fechaEstimada
+    - EstadoEnvio estado
+
+    + Envio()
+    + Envio(Long id, Boolean eliminado, String tracking, Empresa empresa,
+             TipoEnvio tipo, double costo, java.time.LocalDate fechaDespacho,
+             java.time.LocalDate fechaEstimada, EstadoEnvio estado)
+    + getId(): Long
+    + setId(Long): void
+    + isEliminado(): Boolean
+    + setEliminado(Boolean): void
+    + getTracking(): String
+    + setTracking(String): void
+    + getEmpresa(): Empresa
+    + setEmpresa(Empresa): void
+    + getTipo(): TipoEnvio
+    + setTipo(TipoEnvio): void
+    + getCosto(): double
+    + setCosto(double): void
+    + getFechaDespacho(): java.time.LocalDate
+    + setFechaDespacho(java.time.LocalDate): void
+    + getFechaEstimada(): java.time.LocalDate
+    + setFechaEstimada(java.time.LocalDate): void
+    + getEstado(): EstadoEnvio
+    + setEstado(EstadoEnvio): void
+    + toString(): String
+  }
+
+  enum EstadoPedido {
+    NUEVO
+    FACTURADO
+    ENVIADO
+  }
+
+  enum Empresa {
+    ANDREANI
+    OCA
+    CORREO_ARG
+  }
+
+  enum TipoEnvio {
+    ESTANDAR
+    EXPRES
+  }
+
+  enum EstadoEnvio {
+    EN_PREPARACION
+    EN_TRANSITO
+    ENTREGADO
+  }
+
+  Pedido "1" --> "1" Envio : contiene
+}
+
+
+@enduml
