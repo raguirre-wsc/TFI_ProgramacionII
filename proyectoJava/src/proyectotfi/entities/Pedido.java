@@ -10,6 +10,7 @@ package proyectotfi.entities;
  */
 
 import java.time.LocalDate;
+import proyectotfi.entities.enums.EstadoPedido;
 
 /**
  * Clase que representa un Pedido dentro del sistema.

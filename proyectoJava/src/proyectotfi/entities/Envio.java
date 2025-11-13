@@ -10,6 +10,9 @@ package proyectotfi.entities;
  */
 
 import java.time.LocalDate;
+import proyectotfi.entities.enums.Empresa;
+import proyectotfi.entities.enums.TipoEnvio;
+import proyectotfi.entities.enums.EstadoEnvio;
 
 /**
  * Clase que representa un Envio dentro del sistema.
