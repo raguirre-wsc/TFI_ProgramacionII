@@ -7,10 +7,10 @@ package proyectotfi.dao;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import proyectotfi.entities.Empresa;
+import proyectotfi.entities.enums.Empresa;
 import proyectotfi.entities.Envio;
-import proyectotfi.entities.EstadoEnvio;
-import proyectotfi.entities.TipoEnvio;
+import proyectotfi.entities.enums.EstadoEnvio;
+import proyectotfi.entities.enums.TipoEnvio;
 
 /**
  *

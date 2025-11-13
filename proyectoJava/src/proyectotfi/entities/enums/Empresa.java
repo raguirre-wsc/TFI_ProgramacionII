@@ -1,4 +1,4 @@
-package proyectotfi.entities;
+package proyectotfi.entities.enums;
 
 /**
  *

@@ -8,6 +8,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import proyectotfi.entities.Pedido;
+import proyectotfi.entities.enums.EstadoPedido;
 
 /**
  *
@@ -103,7 +104,7 @@ public class PedidoDAO implements GenericDAO<Pedido>{
         p.setFecha(rs.getDate("fecha").toLocalDate());
         p.setClienteNombre(rs.getString("clienteNombre"));
         p.setTotal(rs.getDouble("total"));
-        p.setEstado(proyectotfi.entities.EstadoPedido.valueOf(rs.getString("estado")));
+        p.setEstado(EstadoPedido.valueOf(rs.getString("estado")));
         p.setEliminado(rs.getBoolean("eliminado"));
         return p;
     }
