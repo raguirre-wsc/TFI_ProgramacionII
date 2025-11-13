@@ -23,7 +23,7 @@ import java.sql.SQLException;
  * ubicado en el directorio raíz del proyecto.
  */
 
-public class Conexion {
+public class DatabaseConnection {
 
     // Carga automáticamente las variables definidas en el archivo .env
     private static final Dotenv dotenv = Dotenv.load();
@@ -36,7 +36,7 @@ public class Conexion {
     private static String password = dotenv.get("DB_PASSWORD");
 
     // Construimos dinámicamente la URL de conexión usando los valores del .env
-    private static String url = String.format("jdbc:mysql://%s:%s/%s?useSSL=false&serverTimezone=UTC",host, port, dbName)
+    private static String url = String.format("jdbc:mysql://%s:%s/%s?useSSL=false&serverTimezone=UTC",host, port, dbName);
 
     public static Connection getConnection() {
         try {
