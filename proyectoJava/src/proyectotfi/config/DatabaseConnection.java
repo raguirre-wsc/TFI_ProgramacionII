@@ -9,24 +9,27 @@ package proyectotfi.config;
  * @author rodrigo_aguirre
  */
 
- // Importamos la librer铆a dotenv para leer variables desde el archivo .env
+ // Importamos la libreri璦 dotenv para leer variables desde el archivo .env
 import io.github.cdimascio.dotenv.Dotenv;
-// Importamos las clases necesarias para la conexi贸n a la base de datos
+// Importamos las clases necesarias para la conexion a la base de datos
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
 /**
- * Clase responsable de establecer la conexi贸n con la base de datos MySQL.
+ * Clase responsable de establecer la conexion con la base de datos MySQL.
  * 
- * Usa la librer铆a dotenv para obtener los datos de conexi贸n desde un archivo .env
- * ubicado en el directorio ra铆z del proyecto.
+ * Usa la libreri璦 dotenv para obtener los datos de conexion desde un archivo .env
+ * ubicado en el directorio rai瓃 del proyecto.
  */
 
 public class DatabaseConnection {
 
-    // Carga autom谩ticamente las variables definidas en el archivo .env
-    private static final Dotenv dotenv = Dotenv.load();
+    // Carga automaticamente las variables definidas en el archivo .env
+    private static final Dotenv dotenv = Dotenv.configure()
+        .directory("src/proyectotfi/config") // ruta relativa desde la raiz del proyecto
+        .filename(".env")                    // nombre del archivo
+        .load();
 
     // Variables obtenidas desde el archivo .env
     private static String host = dotenv.get("DB_HOST");
@@ -35,15 +38,17 @@ public class DatabaseConnection {
     private static String user = dotenv.get("DB_USER");
     private static String password = dotenv.get("DB_PASSWORD");
 
-    // Construimos din谩micamente la URL de conexi贸n usando los valores del .env
+    // Construimos dinamicamente la URL de conexion usando los valores del .env
     private static String url = String.format("jdbc:mysql://%s:%s/%s?useSSL=false&serverTimezone=UTC",host, port, dbName);
 
     public static Connection getConnection() {
         try {
-            // Intenta establecer la conexi贸n usando los par谩metros cargados
-            return DriverManager.getConnection(url, user, password);
+            // Intenta establecer la conexion usando los parametros cargados
+            Connection con = DriverManager.getConnection(url, user, password);
+            System.out.println("Conexi髇 exitosa a la base de datos.");
+            return con;
         } catch (SQLException e) {
-            // Si ocurre un error, lanzamos una excepci贸n
+            // Si ocurre un error, lanzamos una excepcion
             throw new RuntimeException("Error al conectar con la base de datos", e);
         }
     }
