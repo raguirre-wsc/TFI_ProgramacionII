@@ -8,6 +8,12 @@ package proyectotfi.service;
  *
  * @author solyo
  */
-public class GenericService {
-    
+import java.util.List;
+
+public interface GenericService<T> {
+    void insertar(T entidad) throws Exception;
+    T getById(Long id) throws Exception;
+    List<T> getAll() throws Exception;
+    void actualizar(T entidad) throws Exception;
+    void eliminar(Long id) throws Exception;
 }
