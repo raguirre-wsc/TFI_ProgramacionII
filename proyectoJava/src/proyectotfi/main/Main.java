@@ -9,12 +9,8 @@ package proyectotfi.main;
  * @author solyo
  */
 public class Main {
-
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
-        // TODO code application logic here
+        AppMenu menu = new AppMenu();
+        menu.iniciar();
     }
-    
 }
