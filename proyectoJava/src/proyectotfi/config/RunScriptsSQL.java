@@ -32,7 +32,7 @@ public class RunScriptsSQL {
                 }
             }
             System.out.println("Se realizo carga masiva de datos exitosamente.");
-
+System.out.println(conn.getMetaData().getURL());
         } catch (Exception e) {
             e.printStackTrace();    
             System.out.println("Se produjo un error al correr Script SQL.");
