@@ -21,7 +21,7 @@ public class PedidoDAO implements GenericDAO<Pedido>{
     @Override
     public void crear(Pedido pedido, Connection conn) throws SQLException {
         envioDao.crear(pedido.getEnvio(), conn);
-         String sql = "INSERT INTO pedido (numero, fecha, clienteNombre, total, estado, envio_id, eliminado) "
+         String sql = "INSERT INTO pedido (numero, fecha, clienteNombre, total, estado, envio, eliminado) "
                    + "VALUES (?, ?, ?, ?, ?, ?, ?)";
         try (PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             ps.setString(1, pedido.getNumero());
@@ -47,7 +47,7 @@ public class PedidoDAO implements GenericDAO<Pedido>{
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
                     Pedido p = mapearPedido(rs);
-                    long envioId = rs.getLong("envio_id");
+                    long envioId = rs.getLong("envio");
                     p.setEnvio(envioDao.leer(envioId, conn));
                     return p;
                 }
@@ -64,7 +64,7 @@ public class PedidoDAO implements GenericDAO<Pedido>{
              ResultSet rs = ps.executeQuery()) {
             while (rs.next()) {
                 Pedido p = mapearPedido(rs);
-                long envioId = rs.getLong("envio_id");
+                long envioId = rs.getLong("envio");
                 p.setEnvio(envioDao.leer(envioId, conn));
                 lista.add(p);
             }
