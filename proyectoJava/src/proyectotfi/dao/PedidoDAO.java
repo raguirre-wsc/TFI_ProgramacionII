@@ -51,11 +51,7 @@ public class PedidoDAO implements GenericDAO<Pedido>{
                     p.setEnvio(envioDao.leer(envioId, conn));
                     return p;
                 }
-            }
-            catch (SQLException e) {
-                System.out.println("El pedido ya existe.");
-            }
-        
+            }   
         }
         return null;
     }

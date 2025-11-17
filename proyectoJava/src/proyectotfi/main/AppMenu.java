@@ -78,7 +78,7 @@ public class AppMenu {
     private void crearPedido() {
         System.out.println("\n[Crear Pedido]");
         try {
-            String numero = String.format("PED-%09d", Integer.parseInt(leerTextoNoVacio("Número de pedido (9 digitos): ")));
+            String numero = leerTextoNoVacio("Número de pedido: ");
             LocalDate fecha = leerFecha("Fecha (AAAA-MM-DD): ");
             String cliente = leerTextoNoVacio("Nombre del cliente: ");
             double total = leerDouble("Total: ");
@@ -229,7 +229,7 @@ public class AppMenu {
     }
 
     private Envio crearEnvioInteractivoObject() {
-        String tracking = String.format("PED-%09d", Integer.parseInt(leerTextoNoVacio("Tracking (9 digitos): ")));;
+        String tracking = leerTextoNoVacio("Tracking: ");
         Empresa empresa = readEmpresa();
         TipoEnvio tipo = readTipoEnvio();
         double costo = leerDouble("Costo: ");
