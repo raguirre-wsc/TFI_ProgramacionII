@@ -20,7 +20,7 @@ public class PedidoDAO implements GenericDAO<Pedido>{
     
     @Override
     public void crear(Pedido pedido, Connection conn) throws SQLException {
-
+        
          String sql = "INSERT INTO pedido (numero, fecha, clienteNombre, total, estado, envio, eliminado) "
                    + "VALUES (?, ?, ?, ?, ?, ?, ?)";
         try (PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
@@ -52,6 +52,10 @@ public class PedidoDAO implements GenericDAO<Pedido>{
                     return p;
                 }
             }
+            catch (SQLException e) {
+                System.out.println("El pedido ya existe.");
+            }
+        
         }
         return null;
     }

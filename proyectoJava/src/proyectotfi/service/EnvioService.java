@@ -23,6 +23,7 @@ public class EnvioService implements GenericService<Envio> {
         validarEnvio(envio);
 
         try (Connection conn = DatabaseConnection.getConnection()) {
+            System.out.println("Catalog actual: " + conn.getCatalog());
             envioDAO.crear(envio, conn);
         }
     }

@@ -54,7 +54,7 @@ public class AppMenu {
         int opcion;
         do {
             System.out.println("\n----- CRUD PEDIDO -----");
-            System.out.println("1. Crear Pedido (con Envío opcional)");
+            System.out.println("1. Crear Pedido");
             System.out.println("2. Ver Pedido por ID");
             System.out.println("3. Listar Pedidos");
             System.out.println("4. Actualizar Pedido");
@@ -78,7 +78,7 @@ public class AppMenu {
     private void crearPedido() {
         System.out.println("\n[Crear Pedido]");
         try {
-            String numero = leerTextoNoVacio("Número de pedido: ");
+            String numero = String.format("PED-%09d", Integer.parseInt(leerTextoNoVacio("Número de pedido (9 digitos): ")));
             LocalDate fecha = leerFecha("Fecha (AAAA-MM-DD): ");
             String cliente = leerTextoNoVacio("Nombre del cliente: ");
             double total = leerDouble("Total: ");
@@ -229,7 +229,7 @@ public class AppMenu {
     }
 
     private Envio crearEnvioInteractivoObject() {
-        String tracking = leerTextoNoVacio("Tracking: ");
+        String tracking = String.format("PED-%09d", Integer.parseInt(leerTextoNoVacio("Tracking (9 digitos): ")));;
         Empresa empresa = readEmpresa();
         TipoEnvio tipo = readTipoEnvio();
         double costo = leerDouble("Costo: ");

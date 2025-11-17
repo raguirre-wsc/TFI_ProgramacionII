@@ -20,6 +20,7 @@ public class EnvioDAO implements GenericDAO<Envio> {
 
     @Override
     public void crear(Envio envio, Connection conn) throws SQLException {
+        
         String sql = "INSERT INTO envio (tracking, empresa, tipo, costo, fechaDespacho, fechaEstimada, estado, eliminado) "
                 + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         try (PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
