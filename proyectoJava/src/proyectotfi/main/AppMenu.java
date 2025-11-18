@@ -54,7 +54,7 @@ public class AppMenu {
         int opcion;
         do {
             System.out.println("\n----- CRUD PEDIDO -----");
-            System.out.println("1. Crear Pedido (con Envío opcional)");
+            System.out.println("1. Crear Pedido");
             System.out.println("2. Ver Pedido por ID");
             System.out.println("3. Listar Pedidos");
             System.out.println("4. Actualizar Pedido");

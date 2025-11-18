@@ -1,9 +1,9 @@
 /*CARGA MASIVA - TABLA PEDIDOS*/
 -- borramos datos cargados previamente si los hubiese
-DELETE FROM Pedido;
+DELETE FROM pedido;
 
 -- reseteamos el contador para autoincrementar la clave primaria
-ALTER TABLE Pedido AUTO_INCREMENT = 1;
+ALTER TABLE pedido AUTO_INCREMENT = 1;
 
 -- desactivamos momentaneamente el check de foreign key para poder cagar datos en el campo envio
 SET foreign_key_checks = 0;
@@ -30,7 +30,7 @@ LIMIT 500000;
 
 
 -- Insertamos todos los pedidos en una sola vez
-INSERT INTO Pedido (numero, fecha, clienteNombre, total, estado, envio)
+INSERT INTO pedido (numero, fecha, clienteNombre, total, estado, envio)
 SELECT
     CONCAT('PED-', LPAD(n, 9, '0')) AS numero,
     DATE_ADD('2020-01-01', INTERVAL FLOOR(RAND() * 2190) DAY) AS fecha,
@@ -48,26 +48,26 @@ WHERE n BETWEEN 1 AND 1000;
 
 
 -- contamos los registros
-SELECT COUNT(*) FROM Pedido;
+SELECT COUNT(*) FROM pedido;
 
 
 /*CARGA MASIVA - TABLA ENVIOS*/
 -- eliminamos registros de envio si los hubiese
-DELETE FROM Envio;
+DELETE FROM envio;
 
 -- insertamos datos a partir de los registros de la tabla Pedido, usando p.envio como id de la tabla
-INSERT INTO Envio (id, tracking, empresa, tipo, costo, fechaDespacho, fechaEstimada, estado)
+INSERT INTO envio (id, tracking, empresa, tipo, costo, fechaDespacho, fechaEstimada, estado)
 -- usamos un CTE para calcular primero fechaDespacho, dado que fechaEstimada despende de este campo para poblarse
 WITH base AS (
     SELECT 
-        p.envio AS id,
+        --p.envio AS id,
         CONCAT('TRK-', LPAD(id, 9, '0')) AS tracking,
         DATE_ADD(p.fecha, INTERVAL 1 DAY) AS fechaDespacho,
         ELT(FLOOR(1 + RAND()*3), 'ANDREANI','OCA','CORREO_ARG') AS empresa,
         ELT(FLOOR(1 + RAND()*2), 'ESTANDAR','EXPRES') AS tipo,
         ROUND(p.total * 0.001 + RAND() * 5000, 2) AS costo,
         ELT(FLOOR(1 + RAND()*3), 'EN_PREPARACION','EN_TRANSITO','ENTREGADO') AS estado
-    FROM Pedido p
+    FROM pedido p
 )
 SELECT 
     id,
@@ -81,7 +81,7 @@ SELECT
 FROM base;
 
 -- contamos registros
-SELECT COUNT(*) FROM Envio;
+SELECT COUNT(*) FROM envio;
 
 -- volvemos a activar el check de foreign key
 SET foreign_key_checks = 1;
